@@ -65,3 +65,55 @@ if result:
     print("Message sent:")
     print(result)
 
+
+#Simple RLE implementation
+
+#Encode message
+def run_length_encode(message):
+    result = []
+    i = 0
+    
+    #Iterate through message and count characters
+    while i < len(message):
+        count = 1
+        while i + 1 < len(message) and message[i] == message[i + 1]:
+            i += 1
+            count += 1
+        result.append(message[i] + str(count))
+        i += 1
+    
+    #Combine charactar pair
+    return ''.join(result)
+
+#Decode message
+def run_length_decode(encoded_message):
+    result = []
+    i = 0
+    
+    while i < len(encoded_message):
+        char = encoded_message[i]
+        count = int(encoded_message[i + 1])
+        result.append(char * count)
+        i += 2
+    
+    return ''.join(result)
+
+#Metadata for the message
+metadata = {
+    "sender": "Justin",
+    "receiver": "Eugene",
+    "type": "RLE"
+}
+
+
+#Example usage
+original_message = "aaabbbccddd"
+encoded_message = run_length_encode(original_message)
+metadata["content"] = encoded_message
+
+print("Encoded Metadata:")
+print(metadata)
+
+decoded_message = run_length_decode(metadata["content"])
+print("\nDecoded Message:")
+print(decoded_message)
