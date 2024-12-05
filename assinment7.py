@@ -66,8 +66,8 @@ if result:
     print(result)
 
 
-#Simple RLE implementation
 
+#Simple RLE implementation
 #Encode message
 def run_length_encode(message):
     result = []
